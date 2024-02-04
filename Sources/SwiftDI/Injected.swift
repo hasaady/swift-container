@@ -9,14 +9,17 @@ import Foundation
 
 @propertyWrapper
 public struct Injected<T> {
-    private var dependency: T
+    private var value: T
 
     public init(_ type: T.Type) {
-        self.dependency = Container.resolve(type)
+        self.value = Container.resolve(type)
     }
 
    public var wrappedValue: T {
-        get { dependency }
-        mutating set { dependency = newValue }
+       get {
+           value
+       } set {
+           value = newValue
+       }
     }
 }
