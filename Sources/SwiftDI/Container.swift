@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Container {
+public final class Container {
     private static let shared = Container()
     private var factories = [String: () -> Any]()
     private var singletons = [String: Any]()
@@ -22,7 +22,7 @@ final class Container {
         Container.shared.singletons[String(describing: type)] = singleton
     }
     
-    static func resolve<T>(_ type: T.Type) -> T {
+    public static func resolve<T>(_ type: T.Type) -> T {
         let key = String(describing: type)
 
         // Return singleton instance if it exists
