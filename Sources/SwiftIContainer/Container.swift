@@ -22,8 +22,8 @@ public final class DIContainer {
         DIContainer.shared.singletons[String(describing: type)] = singleton
     }
     
-    public static func resolve<T>(_ type: T.Type) -> T {
-        let key = String(describing: type)
+    public static func resolve<T>() -> T {
+        let key = String(describing: T.self)
 
         // Return singleton instance if it exists
         if let singleton = DIContainer.shared.singletons[key] as? T {
@@ -31,8 +31,8 @@ public final class DIContainer {
         }
 
         // Otherwise, create a new instance using the factory
-        if let factory = DIContainer.shared.factories[key]?() as? T {
-            return factory
+        if let factory = DIContainer.shared.factories[key], let instance = factory() as? T {
+            return instance
         }
 
         fatalError("No registered entry for \(T.self)")

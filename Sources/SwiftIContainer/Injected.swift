@@ -1,6 +1,6 @@
 //
 //  Injected.swift
-//  
+//
 //
 //  Created by Hanan on 04/02/2024.
 //
@@ -11,8 +11,8 @@ import Foundation
 public struct Injected<T> {
     private var value: T
 
-    public init(_ type: T.Type) {
-        self.value = Container.resolve(type)
+    public init() {
+        self.value = DIContainer.resolve()
     }
 
    public var wrappedValue: T {
